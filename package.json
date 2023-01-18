@@ -1,5 +1,5 @@
 {
-  "name": "snap-bravery",
+  "name": "getsnapped",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,12 +9,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
+    "axios": "^1.2.2",
+    "bootstrap": "^5.2.3",
     "dotenv": "^16.0.3",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.4"
   },
   "devDependencies": {
+    "@types/node": "^18.11.18",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "@vitejs/plugin-react": "^2.2.0",
