@@ -8,11 +8,7 @@ import { store } from "./app/store";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>
-		<ThemeProvider
-			breakpoints={["xl", "lg", "md", "sm"]}
-			minBreakpoint="sm"
-			theme={theme}
-		>
+		<ThemeProvider breakpoints={["xl", "lg", "md", "sm"]} minBreakpoint="sm">
 			<Provider store={store}>
 				<App />
 			</Provider>

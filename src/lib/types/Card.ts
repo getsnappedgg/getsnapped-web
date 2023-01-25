@@ -6,4 +6,5 @@ export type Card = {
 	pool: string;
 	flavorText: string;
 	keyword: string;
+	imageLink: string;
 };

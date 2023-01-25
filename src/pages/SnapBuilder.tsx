@@ -4,7 +4,9 @@ interface SnapBuilderProps {
 }
 const SnapBuilder: React.FC<SnapBuilderProps> = () => {
 	return (
-		<>
+        <>
+            {/* Deck Viewer */}
+            
 			<h2>SnapBuilder</h2>
 			<CardGrid />
 		</>
