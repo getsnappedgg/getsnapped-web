@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
+// import { Card, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getCards, reset } from "../../features/cards/cardsSlice";
@@ -39,14 +39,14 @@ const CardGrid = () => {
 
 	return (
 		<>
-			<section className="grid grid-flow-row grid-cols-3 overflow-auto auto-rows-max bg-slate-700 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2">
+			<section className="grid grid-flow-row grid-cols-3 overflow-auto auto-rows-max bg-slate-700 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 w-screen lg:w-3/5">
 				{cards.map((card: MarvelCard, i: any) => {
 					const image = card.imageLink;
 					console.log(card);
 					return (
 						// <Col lg="3" key={i} onMouseOver={() => onCardHover}>
-						<div className="m-0" onClick={() => {}}>
-							<img className="m-0" src={image} />
+						<div className="m-1" onClick={() => {}}>
+							<img className="m-0 cursor-pointer" src={image} />
 							<h6 className="font-light text-slate-200 text-center">
 								{card.name}
 							</h6>

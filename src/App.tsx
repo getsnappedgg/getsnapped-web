@@ -2,14 +2,15 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { SnapBuilder } from "./pages";
+import LoginUser from "./pages/LoginUser";
+import RegisterUser from "./pages/RegisterUser";
 
 function App() {
 	return (
 		<>
 			<div className="flex flex-row relative w-screen h-screen">
 				<Router>
-					<Sidebar />
-					<section>
+					<section className="">
 						<Header />
 
 						<Routes>
@@ -20,8 +21,8 @@ function App() {
 							<Route path="/decks" element={<h2>Deck Lists</h2>} />
 							<Route path="/about" element={<h2>About</h2>} />
 							<Route path="/archetype" element={<h2>Snap Archetype</h2>} />
-							{/* <Route path="/login" element={<Login />} /> */}
-							{/* <Route path="/register" element={<Register />} /> */}
+							<Route path="/login" element={<LoginUser />} />
+							<Route path="/register" element={<RegisterUser />} />
 						</Routes>
 					</section>
 				</Router>
