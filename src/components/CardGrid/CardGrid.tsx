@@ -39,27 +39,27 @@ const CardGrid = () => {
 
 	return (
 		<>
-			<Container fluid className="grid">
-				<Row className="justify-content-md-center">
-					{cards.map((card: MarvelCard, i: any) => {
-						const image = card.imageLink;
-						console.log(card);
-						return (
-							// <Col lg="3" key={i} onMouseOver={() => onCardHover}>
-							<Card className="card" onClick={() => { }}>
-								<Card.Title className="card-name">{card.name}</Card.Title>
-								<Card.Img className="card-image" src={image} />
-								{/* <img
+			<section className="grid grid-flow-row grid-cols-3 overflow-auto auto-rows-max bg-slate-700 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2">
+				{cards.map((card: MarvelCard, i: any) => {
+					const image = card.imageLink;
+					console.log(card);
+					return (
+						// <Col lg="3" key={i} onMouseOver={() => onCardHover}>
+						<div className="m-0" onClick={() => {}}>
+							<img className="m-0" src={image} />
+							<h6 className="font-light text-slate-200 text-center">
+								{card.name}
+							</h6>
+							{/* <img
 									src={image}
 									className="card-image"
 
 								/> */}
-							</Card>
-							// </Col>
-						);
-					})}
-				</Row>
-			</Container>
+						</div>
+						// </Col>
+					);
+				})}
+			</section>
 		</>
 	);
 };
