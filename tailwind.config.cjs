@@ -14,9 +14,6 @@ module.exports = {
 		},
 		extend: {
 			colors: {
-				"gray-one": "a7b0bb",
-				"gray-two": "13171b",
-				"gray-three": "20252a",
 				blue: "#1fb6ff",
 				purple: "#7e5bef",
 				pink: "#ff49db",
@@ -25,9 +22,21 @@ module.exports = {
 				yellow: "#ffc82c",
 				"gray-dark": "#273444",
 				gray: "#8492a6",
-				"gray-light": "#d3dce6"
+				"gray-light": "#d3dce6",
+				primary: "#8b5cf6",
+				"light-accent": "#c6a8f6",
+				"dark-accent": "#6f4ac5",
+				"neutral-gray": "#2e3b4d",
+				highlight: "#ffffff",
 			},
 		},
 	},
+	/**
+	 * #8b5cf6 (primary color)
+#c6a8f6 (light accent)
+#6c1e9f (dark accent)
+#333333 (neutral gray)
+#ffffff (highlight)
+	 */
 	plugins: [],
 };

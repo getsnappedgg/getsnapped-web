@@ -1,15 +1,23 @@
+import { Link } from "react-router-dom";
+
 const RegisterUser = () => {
 	return (
 		<>
 			<section className="flex flex-row h-screen w-auto bg-gray-dark">
-				<div className="container mx-auto mt-32 px-12 lg:px-72 lg:mt-32">
-					<h1 className="text-3xl text-white font-normal flex flex-row tracking-wide">
+				<div className="container mx-auto mt-24 px-24  lg:px-72 md:px-48">
+					<h1 className="text-2xl md:text-3xl text-white font-normal flex flex-row tracking-wide">
 						Create new account
-						<div className="text-3xl relative bottom-0 text-violet-500 font-extrabold">
+						<div className="text-3xl relative bottom-1 md:bottom-0 text-primary font-extrabold">
 							.
 						</div>
 					</h1>
-					<form className="flex flex-col">
+					<p className="text-slate-400 top-4 left-2 relative">
+						Already have an account?&nbsp;
+						<Link to="/login" className="text-blue">
+							Sign in
+						</Link>
+					</p>
+					<form className="flex flex-col mt-8">
 						<div className="flex flex-col justify-between">
 							<label className="m-2 text-neutral-100 text-lg font-semibold mb-2">
 								Username

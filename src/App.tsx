@@ -1,18 +1,15 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
-import { SnapBuilder } from "./pages";
-import LoginUser from "./pages/LoginUser";
-import RegisterUser from "./pages/RegisterUser";
+import { LoginUser, RegisterUser, SnapBuilder } from "./pages";
 
 function App() {
 	return (
 		<>
-			<div className="flex flex-row relative w-screen h-screen">
+			<div className="flex flex-row relative w-screen h-full bg-gray-dark ">
 				<Router>
 					<section className="">
 						<Header />
-
 						<Routes>
 							<Route path="/" element={<h2>Home</h2>} />
 							<Route path="/builder" element={<SnapBuilder />} />
