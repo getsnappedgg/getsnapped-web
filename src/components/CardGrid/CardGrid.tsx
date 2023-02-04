@@ -9,7 +9,7 @@ import CardFilterMenu from "../CardFilterMenu/CardFilterMenu";
 import Spinner from "../Spinner/Spinner";
 import "./CardGrid.scss";
 
-const CardGrid = ({ getSingleCardData }: any) => {
+const CardGrid = ({ getSingleCardData, onCardClick }: any) => {
 	const navigate = useNavigate();
 	const dispatch: any = useDispatch();
 
@@ -49,6 +49,13 @@ const CardGrid = ({ getSingleCardData }: any) => {
 		e.preventDefault();
 		setShowCardFilter(!showCardFilter);
 	};
+	const handleCardClick = (e: any) => {
+		e.preventDefault();
+		const id = e.target.id;
+		const card = cards[id];
+		onCardClickGrayscale(e);
+		onCardClick(card);
+	};
 	const onCardHover = (e: any) => {
 		e.preventDefault();
 
@@ -72,34 +79,24 @@ const CardGrid = ({ getSingleCardData }: any) => {
 		};
 		getSingleCardData(singleCard);
 	};
-	const onImageClick = (e: any) => {
+
+	const onCardClickGrayscale = (e: any) => {
 		e.preventDefault();
-		console.log("im clicked");
+		console.log(e.target.classList);
+		if (e.target.classList.contains("grayscale")) {
+			e.target.classList.remove("grayscale");
+			e.target.classList.add("grayscale-0");
+		} else if (e.target.classList.contains("grayscale-0")) {
+			e.target.classList.remove("grayscale-0");
+			e.target.classList.add("grayscale");
+		}
 	};
-	// const handleSearchChange = (e: any) => {
-	// 	e.preventDefault();
-
-	// 	const search = e.target.value;
-	// 	console.log(fuse.search(search));
-	// 	setCardList(fuse.search(search));
-	// };
-
 	if (isLoading) {
 		return <Spinner />;
 	}
 	return (
 		<>
-			<div>
-				<div className="m-2">
-					<h1 className="font-semi-bold text-2xl text-white">Instructions</h1>
-					<p className="text-slate-200">
-						Start by hovering and selecting a card from the available card
-						library on the left side of the screen. Use the filters and search
-						bar to easily find specific cards or card types. When you are ready
-						to save your deck, click the "Save" button, or the "Reset" button if
-						you want to start over.
-					</p>
-				</div>
+			<div className="flex flex-col">
 				<div className="flex justify-end">
 					<button
 						className="m-2 pt-2 pb-2 pl-6 pr-6 bg-primary hover:bg-dark-accent rounded border-slate-300 text-white "
@@ -121,13 +118,16 @@ const CardGrid = ({ getSingleCardData }: any) => {
 				{cards.map((card: MarvelCard, i: any) => {
 					const image = card.imageLink;
 					return (
-						<div className="m-1" key={i} onClick={() => {}}>
-							<img
-								className="m-0 cursor-pointer hover:scale-110 transition ease-in-out duration-125"
-								id={i}
-								src={image}
-								onMouseOver={onCardHover}
-							/>
+						<div className="m-1" key={i}>
+							<button className="transition ease-in-out">
+								<img
+									className="m-0 cursor-pointer hover:scale-110 active:scale-75 transition ease-in-out duration-125 grayscale-0"
+									id={i}
+									src={image}
+									onMouseOver={onCardHover}
+									onClick={handleCardClick}
+								/>
+							</button>
 							<h6 className="font-light text-slate-200 text-center">
 								{card.name}
 							</h6>

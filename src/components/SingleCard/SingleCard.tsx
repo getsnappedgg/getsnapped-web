@@ -1,5 +1,4 @@
 const SingleCardViewer = ({ card }: any) => {
-	console.log(card);
 	const { name, id, cost, power, description, source, imageLink } = card;
 	if (!name) {
 		console.log("no name");
