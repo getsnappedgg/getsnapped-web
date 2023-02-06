@@ -25,6 +25,9 @@ const SnapBuilder: React.FC<SnapBuilderProps> = () => {
 			setUserDeck(userDeck.filter(c => c !== card));
 		}
 	};
+	const handleUserDeckReset = (e: any) => {
+		setUserDeck([]);
+	};
 	return (
 		<>
 			{/* Deck Viewer */}
@@ -48,6 +51,17 @@ const SnapBuilder: React.FC<SnapBuilderProps> = () => {
 
 				<section className="hidden lg:flex flex-col col-span-5  ">
 					<UserDeckBuilder cards={userDeck} />
+					<div className="flex justify-end">
+						<button className="m-2 pt-2 pb-2 pl-6 pr-6 bg-primary hover:bg-dark-accent rounded border-slate-300 text-white ">
+							Save
+						</button>
+						<button
+							className="m-2 pt-2 pb-2 pl-6 pr-6 bg-primary hover:bg-dark-accent rounded border-slate-300 text-white"
+							onClick={handleUserDeckReset}
+						>
+							Reset
+						</button>
+					</div>
 					<div className="mt-4">
 						<SingleCardViewer card={card} />
 					</div>

@@ -18,15 +18,6 @@ const UserDeckBuilder = ({ cards }) => {
 					);
 				})}
 			</section>
-
-			<div className="flex justify-end">
-				<button className="m-2 pt-2 pb-2 pl-6 pr-6 bg-primary hover:bg-dark-accent rounded border-slate-300 text-white ">
-					Save
-				</button>
-				<button className="m-2 pt-2 pb-2 pl-6 pr-6 bg-primary hover:bg-dark-accent rounded border-slate-300 text-white ">
-					Reset
-				</button>
-			</div>
 		</>
 	);
 };

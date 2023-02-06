@@ -9,7 +9,10 @@ import CardFilterMenu from "../CardFilterMenu/CardFilterMenu";
 import Spinner from "../Spinner/Spinner";
 import "./CardGrid.scss";
 
-const CardGrid = ({ getSingleCardData, onCardClick }: any) => {
+const CardGrid = (
+	{ getSingleCardData, onCardClick }: any,
+	{ userDeck }: any
+) => {
 	const navigate = useNavigate();
 	const dispatch: any = useDispatch();
 
@@ -38,6 +41,7 @@ const CardGrid = ({ getSingleCardData, onCardClick }: any) => {
 			dispatch(reset());
 		};
 	}, [navigate, isError, message, dispatch]);
+
 
 	// useEffect(() => {
 	// 	if (cardList.length == 0) {
