@@ -7,26 +7,37 @@ interface SnapBuilderProps {
 	// myprop: number;
 }
 const SnapBuilder: React.FC<SnapBuilderProps> = () => {
-	const [card, setCard] = useState({});
+	const [singleCard, setSingleCard] = useState({});
+	const [cardGridReset, setCardGridReset] = useState(false);
 	const [userDeck, setUserDeck] = useState(Array<Partial<Card>>);
 	const deckLength = 12;
 	useEffect(() => {
 		console.log("rerendering snap builder");
 	}, [userDeck]);
 	const getSingleCardData = (data: Partial<Card>) => {
-		setCard(data);
+		setSingleCard(data);
 	};
-	const onCardClick = (card: Partial<Card>) => {
+	const onCardClick = (clickedCard: Partial<Card>) => {
 		// remove card from decklist
-		if (!userDeck.includes(card) && userDeck.length < deckLength) {
-			setUserDeck([...userDeck, card]);
+		if (!userDeck.includes(clickedCard) && userDeck.length < deckLength) {
+			setUserDeck([...userDeck, clickedCard]);
 		} else {
 			//remove card from decklist
-			setUserDeck(userDeck.filter(c => c !== card));
+			setUserDeck(userDeck.filter(c => c !== clickedCard));
 		}
 	};
 	const handleUserDeckReset = (e: any) => {
+		setCardGridReset(true);
 		setUserDeck([]);
+	};
+	const removeCard = (card: any) => {
+		console.log(card);
+		setUserDeck(
+			userDeck.filter(c => {
+				return c != card;
+			})
+		);
+		// setUserDeck()
 	};
 	return (
 		<>
@@ -46,11 +57,13 @@ const SnapBuilder: React.FC<SnapBuilderProps> = () => {
 					<CardGrid
 						getSingleCardData={getSingleCardData}
 						onCardClick={onCardClick}
+						userDeck={userDeck}
+						cardGridReset={cardGridReset}
 					/>
 				</section>
 
 				<section className="hidden lg:flex flex-col col-span-5  ">
-					<UserDeckBuilder cards={userDeck} />
+					<UserDeckBuilder cards={userDeck} removeCard={removeCard} />
 					<div className="flex justify-end">
 						<button className="m-2 pt-2 pb-2 pl-6 pr-6 bg-primary hover:bg-dark-accent rounded border-slate-300 text-white ">
 							Save
@@ -63,7 +76,7 @@ const SnapBuilder: React.FC<SnapBuilderProps> = () => {
 						</button>
 					</div>
 					<div className="mt-4">
-						<SingleCardViewer card={card} />
+						<SingleCardViewer card={singleCard} />
 					</div>
 				</section>
 			</div>

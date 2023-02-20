@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // import { Card, Col, Container, Row } from "react-bootstrap";
 import Fuse from "fuse.js";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,13 +9,15 @@ import CardFilterMenu from "../CardFilterMenu/CardFilterMenu";
 import Spinner from "../Spinner/Spinner";
 import "./CardGrid.scss";
 
-const CardGrid = (
-	{ getSingleCardData, onCardClick }: any,
-	{ userDeck }: any
-) => {
+const CardGrid = ({
+	getSingleCardData,
+	onCardClick,
+	cardGridReset,
+	userDeck,
+}: any) => {
 	const navigate = useNavigate();
 	const dispatch: any = useDispatch();
-
+	const cardsRef = useRef<HTMLDivElement[] | null>([]);
 	let { cards, isLoading, isError, message } = useSelector(
 		(state: any) => state.cards
 	);
@@ -29,20 +31,24 @@ const CardGrid = (
 	// const fuse = new Fuse(cardList, options);
 
 	const [showCardFilter, setShowCardFilter] = useState(false);
-
 	useEffect(() => {
-		console.log("im running");
+		console.log("userdeck has changed", userDeck);
+		userDeck.forEach(card => {});
+	}, [userDeck]);
+	useEffect(() => {
 		if (isError) {
 			console.log(message);
 		}
-		console.log("dispatching");
 		dispatch(getCards());
 		return () => {
 			dispatch(reset());
 		};
 	}, [navigate, isError, message, dispatch]);
 
-
+	useEffect(() => {
+		// cards.map(card => {});
+		console.log(cardGridReset);
+	}, [cardGridReset]);
 	// useEffect(() => {
 	// 	if (cardList.length == 0) {
 	// 		setCardList(cards);
@@ -83,17 +89,26 @@ const CardGrid = (
 		};
 		getSingleCardData(singleCard);
 	};
-
+	const swapGrayscale = card => {
+		if (card.classList.contains("grayscale")) {
+			card.classList.remove("grayscale");
+			card.classList.add("grayscale-0");
+		} else if (card.classList.contains("grayscale-0")) {
+			card.classList.remove("grayscale-0");
+			card.classList.add("grayscale");
+		}
+	};
 	const onCardClickGrayscale = (e: any) => {
 		e.preventDefault();
-		console.log(e.target.classList);
-		if (e.target.classList.contains("grayscale")) {
-			e.target.classList.remove("grayscale");
-			e.target.classList.add("grayscale-0");
-		} else if (e.target.classList.contains("grayscale-0")) {
-			e.target.classList.remove("grayscale-0");
-			e.target.classList.add("grayscale");
-		}
+		console.log(e.target);
+		swapGrayscale(e.target);
+		// if (e.target.classList.contains("grayscale")) {
+		// 	e.target.classList.remove("grayscale");
+		// 	e.target.classList.add("grayscale-0");
+		// } else if (e.target.classList.contains("grayscale-0")) {
+		// 	e.target.classList.remove("grayscale-0");
+		// 	e.target.classList.add("grayscale");
+		// }
 	};
 	if (isLoading) {
 		return <Spinner />;
@@ -122,10 +137,14 @@ const CardGrid = (
 				{cards.map((card: MarvelCard, i: any) => {
 					const image = card.imageLink;
 					return (
-						<div className="m-1" key={i}>
+						<div
+							className="m-1"
+
+							key={i}
+						>
 							<button className="transition ease-in-out">
 								<img
-									className="m-0 cursor-pointer hover:scale-110 active:scale-75 transition ease-in-out duration-125 grayscale-0"
+									className="m-0 p-0 cursor-pointer hover:scale-110 active:scale-75 transition ease-in-out duration-125 grayscale-0"
 									id={i}
 									src={image}
 									onMouseOver={onCardHover}
