@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
-		"build": "tsc && npm run build-css && vite build",
+		"build": "tsc && vite build",
 		"preview": "vite preview",
 		"build-css": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
 		"start": "concurrently \"npm run build-css\" \"npm run dev\""

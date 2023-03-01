@@ -33,7 +33,7 @@ const CardGrid = ({
 	const [showCardFilter, setShowCardFilter] = useState(false);
 	useEffect(() => {
 		console.log("userdeck has changed", userDeck);
-		userDeck.forEach(card => {});
+		// userDeck.forEach(card => {});
 	}, [userDeck]);
 	useEffect(() => {
 		if (isError) {
@@ -89,7 +89,7 @@ const CardGrid = ({
 		};
 		getSingleCardData(singleCard);
 	};
-	const swapGrayscale = card => {
+	const swapGrayscale = (card: any) => {
 		if (card.classList.contains("grayscale")) {
 			card.classList.remove("grayscale");
 			card.classList.add("grayscale-0");
@@ -137,11 +137,7 @@ const CardGrid = ({
 				{cards.map((card: MarvelCard, i: any) => {
 					const image = card.imageLink;
 					return (
-						<div
-							className="m-1"
-
-							key={i}
-						>
+						<div className="m-1" key={i}>
 							<button className="transition ease-in-out">
 								<img
 									className="m-0 p-0 cursor-pointer hover:scale-110 active:scale-75 transition ease-in-out duration-125 grayscale-0"

@@ -1,12 +1,12 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import authService from "./authService";
 
 // Get user from localStorage
 const token = localStorage.getItem("user");
 let user;
 if (token) {
-    // throw new Error("User not logged in")
-    user = JSON.parse(token);
+	// throw new Error("User not logged in")
+	user = JSON.parse(token);
 }
 
 const initialState = {
@@ -20,8 +20,8 @@ const initialState = {
 // Register user
 export const register = createAsyncThunk(
 	"auth/register",
-	async (registerData, thunkAPI) => {
-        try {
+	async (registerData: any, thunkAPI) => {
+		try {
 			return await authService.register(registerData);
 		} catch (error: any) {
 			const message =
@@ -36,17 +36,22 @@ export const register = createAsyncThunk(
 );
 
 // Login user
-export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
-	try {
-		return await authService.login(user);
-	} catch (error: any) {
-		const message =
-			(error.response && error.response.data && error.response.data.message) ||
-			error.message ||
-			error.toString();
-		return thunkAPI.rejectWithValue(message);
+export const login = createAsyncThunk(
+	"auth/login",
+	async (user: any, thunkAPI) => {
+		try {
+			return await authService.login(user);
+		} catch (error: any) {
+			const message =
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString();
+			return thunkAPI.rejectWithValue(message);
+		}
 	}
-});
+);
 
 export const logout = createAsyncThunk("auth/logout", async () => {
 	await authService.logout();
