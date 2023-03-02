@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 // import { Card, Col, Container, Row } from "react-bootstrap";
-import Fuse from "fuse.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getCards, reset } from "../../features/cards/cardsSlice";
