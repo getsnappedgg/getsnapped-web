@@ -10,7 +10,6 @@ const getCards = async (): Promise<any> => {
 		console.error(error);
 	}
 };
-
 const cardsService = {
 	getCards,
 };
